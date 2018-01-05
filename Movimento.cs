@@ -1,25 +1,25 @@
 public class Jogador : MonoBehaviour
 {
 
-    public float velocidade;
+    public float velocidade; //=variável publica (qualquer um pode mudar, ela aparece no unity p ser alteravel) do tipo float (n decimal)
     public float cameraSensibilidade;
-    public float velocidadeGiro;
+    public float velocidadeGiro; //criei p poder usar velocidade diferente da cameraSensibilidade
     // Update is called once per frame
     void Update()
     {
-       /// MovimentoMouse();
+       MovimentoMouse(); //criar função só para organizar melhor documento, ela esta lá embaixo
 
         //Para frente 
         if (Input.GetKey(KeyCode.W))
         {
-            transform.Translate(Vector3.forward * Time.deltaTime * velocidade);
+            transform.Translate(Vector3.forward * Time.deltaTime * velocidade); //Time.deltaTime = desrelaciona o tempo em jogo com a capacidade de processamento da máquina, assim pode jogar o mesmo jogo em máquinas diferentes
         
         }
         //Esquerda
         else if (Input.GetKey(KeyCode.A))
         {
-            transform.Translate(Vector3.right * Time.deltaTime * velocidade);
-            transform.Rotate(0, -1 * velocidadeGiro, 0);
+            transform.Translate(Vector3.right * Time.deltaTime * velocidade); 
+            transform.Rotate(0, -1 * velocidadeGiro, 0); // ir pra esquerdaa=ir sentido negativo do eixo x -> rotacionamos o eixo y
            }
   
         //Direita
@@ -47,11 +47,12 @@ public class Jogador : MonoBehaviour
 
 // exemplo função:
     void MovimentoMouse()
-    {
-        float mouseX = Input.GetAxis("Mouse X");
+    {  //poderia tirar essa parte das {} e deixar lá emcima no lugar na função
+        float mouseX = Input.GetAxis("Mouse X"); 
         float mouseY = Input.GetAxis("Mouse Y");
-        Vector3 lookhere = new Vector3(-mouseY * cameraSensibilidade, 0, 0);
-        transform.Rotate(lookhere);
+        Vector3 lookhere = new Vector3(-mouseY * cameraSensibilidade, 0, 0); // vetor3 = 0,0,0 = x,y,z 
+        transform.Rotate(lookhere); //nesse caso foi usado o eixo y do mouse (vertical) que esta sendo rotacionado pelo eixo x 
+        //para permitir que a camera rode p cima e pra baixo qnd movemos o mouse
        
     }
 }
