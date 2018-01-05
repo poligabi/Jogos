@@ -10,13 +10,13 @@ public class Jogador : MonoBehaviour
        MovimentoMouse(); //criar função só para organizar melhor documento, ela esta lá embaixo
 
         //Para frente 
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W)) // ele observa se essa condição é verdadeira o tempo todo, mas um jogo cheio de "if" exige mais processamento, por isso usamos "else if"
         {
             transform.Translate(Vector3.forward * Time.deltaTime * velocidade); //Time.deltaTime = desrelaciona o tempo em jogo com a capacidade de processamento da máquina, assim pode jogar o mesmo jogo em máquinas diferentes
         
         }
         //Esquerda
-        else if (Input.GetKey(KeyCode.A))
+        else if (Input.GetKey(KeyCode.A)) //só se a outra não for verdadeira ele muda p essa opção, só se tirar os "else" é possível apertar 2 botões ao mesmo tempo e criar movimento diagonal
         {
             transform.Translate(Vector3.right * Time.deltaTime * velocidade); 
             transform.Rotate(0, -1 * velocidadeGiro, 0); // ir pra esquerdaa=ir sentido negativo do eixo x -> rotacionamos o eixo y
