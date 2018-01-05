@@ -50,7 +50,7 @@ public class Jogador : MonoBehaviour
     {  //poderia tirar essa parte das {} e deixar lá emcima no lugar na função
         float mouseX = Input.GetAxis("Mouse X"); 
         float mouseY = Input.GetAxis("Mouse Y");
-        Vector3 lookhere = new Vector3(-mouseY * cameraSensibilidade, 0, 0); // vetor3 = 0,0,0 = x,y,z 
+        Vector3 lookhere = new Vector3(-mouseY * cameraSensibilidade, 0, 0); // vetor3 = 0,0,0 = x,y,z (se add mudança em 2 eixos ele desloca na diagonal)
         transform.Rotate(lookhere); //nesse caso foi usado o eixo y do mouse (vertical) que esta sendo rotacionado pelo eixo x 
         //para permitir que a camera rode p cima e pra baixo qnd movemos o mouse
        
