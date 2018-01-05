@@ -15,11 +15,12 @@ public class Jogador : MonoBehaviour
             transform.Translate(Vector3.forward * Time.deltaTime * velocidade);
         
         }
-        //Esqueda
+        //Esquerda
         else if (Input.GetKey(KeyCode.A))
         {
             transform.Translate(Vector3.right * Time.deltaTime * velocidade);
             transform.Rotate(0, -1 * velocidadeGiro, 0);
+           }
   
         //Direita
         else if (Input.GetKey(KeyCode.D))
