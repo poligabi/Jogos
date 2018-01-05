@@ -1,0 +1,5 @@
+//Direita
+        else if (Input.GetKey(KeyCode.D))
+        {
+            transform.Translate(Vector3.right * Time.deltaTime * velocidade);
+            transform.Rotate(0, 1 * velocidadeGiro, 0);
