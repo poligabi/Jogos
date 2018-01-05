@@ -1,3 +1,5 @@
+/// Movimento Básico
+
 public class Jogador : MonoBehaviour
 {
 
@@ -54,5 +56,84 @@ public class Jogador : MonoBehaviour
         transform.Rotate(lookhere); //nesse caso foi usado o eixo y do mouse (vertical) que esta sendo rotacionado pelo eixo x 
         //para permitir que a camera rode p cima e pra baixo qnd movemos o mouse
        
+    }
+}
+
+////// COM HABILIDADE DE VOO ////////////////////////////////////////////////////////////////////////////
+public class Jogador : MonoBehaviour
+{
+
+    public float velocidade;
+    public float cameraSensibilidade;
+    public float velocidadeGiro;
+    private Rigidbody rb;
+    public float forcaPulo;
+    public float anularGrav = 8.12F;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        Voo();
+        MovimentoMouse();
+        MovimentoJogador();
+        
+    }
+    void Voo()
+    {
+
+        rb.AddForce(Vector3.up * anularGrav); //com gravidade ligada precisas d força pra cima contraria suficiente p anular
+       //rb.useGravity = false;
+
+    }
+    void MovimentoJogador()
+        {
+            //Para frente 
+            if (Input.GetKey(KeyCode.W))
+            {
+                transform.Translate(Vector3.forward * Time.deltaTime * velocidade);
+                //rb.AddForce(transform.forward * velocidade);
+
+            }
+            //Esquerda
+            if (Input.GetKey(KeyCode.A))
+            {
+                transform.Translate(Vector3.right * Time.deltaTime * velocidade);
+                //rb.AddForce(Vector3.left * velocidade);
+                transform.Rotate(0, -1 * velocidadeGiro, 0, Space.World);
+            }
+
+            //Direita
+            if (Input.GetKey(KeyCode.D))
+            {
+                transform.Translate(Vector3.right * Time.deltaTime * velocidade);
+                //rb.AddForce(Vector3.left * velocidade);
+                transform.Rotate(0, 1 * velocidadeGiro, 0, Space.World);
+            }
+            //Para trás
+            else if (Input.GetKey(KeyCode.S))
+                transform.Translate(Vector3.back * Time.deltaTime * velocidade);
+
+            //Para cima
+            else if (Input.GetKey(KeyCode.Space))
+                //rb.AddForce(Vector3.up * forcaPulo);
+            transform.Translate(Vector3.up * Time.deltaTime * velocidade);
+
+            // Para baixo
+            else if (Input.GetKey(KeyCode.V))
+                transform.Translate(Vector3.down * Time.deltaTime * velocidade);
+
+        }
+    
+
+    void MovimentoMouse()
+    {
+        float mouseX = Input.GetAxis("Mouse X");
+        float mouseY = Input.GetAxis("Mouse Y");
+        Vector3 lookhere = new Vector3(-mouseY * cameraSensibilidade, 0, 0);
+        transform.Rotate(lookhere);
     }
 }
